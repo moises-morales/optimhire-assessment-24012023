@@ -46,14 +46,3 @@ class BookingDestroyedAPIView(DestroyAPIView):
         self.logger.info(f"{self.kwargs}")
         queryset = Booking.objects.filter(customer__id=self.kwargs['customer_id'])
         return queryset
-    """
-    def destroy(self, request, *args, **kwargs):
-        instance = self.get_object()
-        self.logger.info(f"Object to delete: {instance}")
-        events = instance.events.all()
-        self.logger.info(f"Events related to the event to delete: {events}")
-        if instance.events.all().count() > 0:
-            return Response("Cannot delete the event because it has events", status=status.HTTP_403_FORBIDDEN)
-        self.perform_destroy(instance)
-        return Response(status=status.HTTP_204_NO_CONTENT)
-    """
